@@ -1,0 +1,237 @@
+.product-details-page {
+    padding-top: 150px;
+    /* Prevent header overlap */
+    padding-bottom: 5rem;
+    min-height: 100vh;
+}
+
+.back-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-gray-500);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.back-nav:hover {
+    color: var(--color-black);
+}
+
+.product-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+/* Gallery */
+.product-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.main-image-container {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-color: var(--color-gray-100);
+    overflow: hidden;
+}
+
+.main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thumbnail-list {
+    display: flex;
+    gap: 1rem;
+}
+
+.thumbnail-btn {
+    width: 80px;
+    aspect-ratio: 3/4;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s, transform 0.3s;
+    background-color: var(--color-gray-100);
+}
+
+.thumbnail-btn.active,
+.thumbnail-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.thumbnail-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Info Section */
+.product-info-section {
+    padding-top: 1rem;
+}
+
+.product-subtitle {
+    display: block;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-gray-500);
+    margin-bottom: 0.5rem;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.product-price-container {
+    font-size: 1.5rem;
+    font-weight: 400;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.current-price {
+    color: var(--color-black);
+}
+
+.original-price {
+    color: var(--color-gray-400);
+    text-decoration: line-through;
+    font-size: 1.25rem;
+}
+
+.product-description {
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    color: var(--color-gray-600);
+}
+
+.product-options {
+    margin-bottom: 2.5rem;
+}
+
+.product-options label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.size-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.size-badge {
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--color-gray-200);
+    font-size: 0.9rem;
+    color: var(--color-black);
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.size-badge:hover {
+    border-color: var(--color-black);
+}
+
+.size-badge.active {
+    background-color: var(--color-black);
+    color: white;
+    border-color: var(--color-black);
+}
+
+.product-actions {
+    margin-bottom: 3rem;
+}
+
+.whatsapp-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: #25D366;
+    /* WhatsApp Green */
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.whatsapp-btn:hover {
+    background-color: #20BD5A;
+}
+
+.product-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-gray-200);
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--color-gray-600);
+}
+
+/* Related Products */
+.related-products-section {
+    padding-top: 4rem;
+    border-top: 1px solid var(--color-gray-100);
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .product-details-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .main-image-container {
+        aspect-ratio: 1/1;
+        /* Square image on mobile usually looks better, or keep 3/4 */
+    }
+}
+
+@media (max-width: 480px) {
+    .product-details-page {
+        padding-top: 100px;
+    }
+
+    .product-title {
+        font-size: 2rem;
+    }
+}
