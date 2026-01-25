@@ -14,7 +14,7 @@ const Featured = () => {
     const slides = [
         {
             id: 1,
-            title: 'Were What',
+            title: 'Wear What',
             subtitle: 'You Like',
             images: [
                 { src: img1, title: 'Denim Collection', link: '/shop' },
