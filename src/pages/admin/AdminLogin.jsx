@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 import './Admin.css';
 
 const AdminLogin = () => {
@@ -17,7 +18,7 @@ const AdminLogin = () => {
                 },
             };
 
-            const response = await fetch('/api/admin/login', {
+            const response = await fetch(`${API_URL}/admin/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

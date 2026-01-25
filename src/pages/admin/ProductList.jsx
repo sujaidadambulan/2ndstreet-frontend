@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 import { Plus, Trash2, Edit, ArrowLeft } from 'lucide-react';
 import './Admin.css';
 
@@ -21,7 +22,7 @@ const ProductList = () => {
 
     const fetchProducts = async () => {
         try {
-            const res = await fetch('/api/products');
+            const res = await fetch(`${API_URL}/products`);
             const data = await res.json();
             setProducts(data);
             setLoading(false);
@@ -37,7 +38,7 @@ const ProductList = () => {
 
         if (window.confirm('Are you sure you want to delete this product?')) {
             try {
-                const res = await fetch(`/api/products/${id}`, {
+                const res = await fetch(`${API_URL}/products/${id}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`,

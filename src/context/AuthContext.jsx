@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { API_URL } from '../config';
 import { auth } from '../firebase';
 import {
     onAuthStateChanged,
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
     const syncUserWithBackend = async (firebaseUser, name = '') => {
         try {
-            const res = await fetch('/api/users/sync', {
+            const res = await fetch(`${API_URL}/users/sync`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

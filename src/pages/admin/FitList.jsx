@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 import { Trash2, Edit, ArrowLeft } from 'lucide-react';
 import './Admin.css';
 
@@ -36,9 +37,9 @@ const FitList = () => {
     const fetchData = async () => {
         try {
             const [fitRes, catRes, subRes] = await Promise.all([
-                fetch('/api/fits'),
-                fetch('/api/categories'),
-                fetch('/api/subcategories')
+                fetch(`${API_URL}/fits`),
+                fetch(`${API_URL}/categories`),
+                fetch(`${API_URL}/subcategories`)
             ]);
 
             const fitData = await fitRes.json();
@@ -59,7 +60,7 @@ const FitList = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/api/fits', {
+            const res = await fetch(`${API_URL}/fits`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -86,7 +87,7 @@ const FitList = () => {
 
         if (window.confirm('Are you sure you want to delete this fit?')) {
             try {
-                const res = await fetch(`/api/fits/${id}`, {
+                const res = await fetch(`${API_URL}/fits/${id}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`,
@@ -115,7 +116,7 @@ const FitList = () => {
         try {
             // We only update name here. If they want to change parent, they should delete and recreate 
             // or we need a more complex edit modal. For minimal changes: Name update only.
-            const res = await fetch(`/api/fits/${id}`, {
+            const res = await fetch(`${API_URL}/fits/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

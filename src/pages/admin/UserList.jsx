@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 import { ArrowLeft } from 'lucide-react';
 import './Admin.css';
 
@@ -26,7 +27,7 @@ const UserList = () => {
                     Authorization: `Bearer ${userInfo.token}`,
                 },
             };
-            const res = await fetch('/api/users', config);
+            const res = await fetch(`${API_URL}/users`, config);
             if (!res.ok) throw new Error('Failed to fetch users');
             const data = await res.json();
             setUsers(data);
@@ -46,7 +47,7 @@ const UserList = () => {
                         Authorization: `Bearer ${userInfo.token}`,
                     },
                 };
-                const res = await fetch(`/api/users/${id}/block`, config);
+                const res = await fetch(`${API_URL}/users/${id}/block`, config);
                 if (!res.ok) throw new Error('Failed to update user');
                 fetchUsers(); // Refresh list
             } catch (error) {

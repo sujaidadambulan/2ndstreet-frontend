@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { API_URL } from '../config';
 import { ArrowLeft, MessageCircle, Share2, ShieldCheck, Truck } from 'lucide-react';
 import ProductCard from '../components/ui/ProductCard';
 import { useCart } from '../context/CartContext';
@@ -27,13 +28,13 @@ const ProductDetails = () => {
         const fetchProductDetails = async () => {
             try {
                 setLoading(true);
-                const res = await fetch(`/api/products/${id}`);
+                const res = await fetch(`${API_URL}/products/${id}`);
                 if (!res.ok) throw new Error('Product not found');
                 const data = await res.json();
                 setProduct(data);
 
                 // Fetch recommendations
-                const allRes = await fetch('/api/products');
+                const allRes = await fetch(`${API_URL}/products`);
                 const allData = await allRes.json();
 
                 const fitId = typeof data.fit === 'object' ? data.fit?._id : data.fit;
@@ -166,7 +167,7 @@ Is this item available for order?`;
                                 <div style={{ marginBottom: '0.25rem' }}>
                                     <strong>Fit:</strong> {typeof product.fit === 'object' ? product.fit?.name : (product.fit || 'Standard')}
                                 </div>
-                               
+
                             </div>
 
                             <div className="product-price-container">

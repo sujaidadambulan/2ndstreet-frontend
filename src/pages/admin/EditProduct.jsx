@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { API_URL } from '../../config';
 import { ArrowLeft, Upload, X } from 'lucide-react';
 import './Admin.css';
 
@@ -39,10 +40,10 @@ const EditProduct = () => {
         const fetchData = async () => {
             try {
                 const [productRes, catRes, subRes, fitRes] = await Promise.all([
-                    fetch(`/api/products/${id}`),
-                    fetch('/api/categories'),
-                    fetch('/api/subcategories'),
-                    fetch('/api/fits')
+                    fetch(`${API_URL}/products/${id}`),
+                    fetch(`${API_URL}/categories`),
+                    fetch(`${API_URL}/subcategories`),
+                    fetch(`${API_URL}/fits`)
                 ]);
 
                 const product = await productRes.json();
@@ -160,7 +161,7 @@ const EditProduct = () => {
                 formData.append('images', image);
             });
 
-            const res = await fetch(`/api/products/${id}`, {
+            const res = await fetch(`${API_URL}/products/${id}`, {
                 method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`,

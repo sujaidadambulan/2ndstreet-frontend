@@ -34,7 +34,7 @@ const LatestItems = () => {
     useEffect(() => {
         const fetchLatestProducts = async () => {
             try {
-                const response = await fetch(`${API_URL}/api/products`);
+                const response = await fetch(`${API_URL}/products`);
                 if (!response.ok) throw new Error('Failed to fetch products');
 
                 const data = await response.json();

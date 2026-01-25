@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 import ProductCard from '../components/ui/ProductCard';
 import { Filter, X } from 'lucide-react';
 import './Shop.css';
@@ -25,10 +26,10 @@ const Shop = () => {
             try {
                 // Fetch all necessary data in parallel
                 const [catsRes, subRes, fitRes, prodsRes] = await Promise.all([
-                    fetch('/api/categories'),
-                    fetch('/api/subcategories'),
-                    fetch('/api/fits'),
-                    fetch('/api/products')
+                    fetch(`${API_URL}/categories`),
+                    fetch(`${API_URL}/subcategories`),
+                    fetch(`${API_URL}/fits`),
+                    fetch(`${API_URL}/products`)
                 ]);
 
                 if (!catsRes.ok || !prodsRes.ok) throw new Error('Failed to fetch data');

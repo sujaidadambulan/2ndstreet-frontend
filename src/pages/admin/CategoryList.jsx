@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 import { Plus, Trash2, Edit, ArrowLeft } from 'lucide-react';
 import './Admin.css';
 
@@ -23,7 +24,7 @@ const CategoryList = () => {
 
     const fetchCategories = async () => {
         try {
-            const res = await fetch('/api/categories');
+            const res = await fetch(`${API_URL}/categories`);
             const data = await res.json();
             setCategories(data);
             setLoading(false);
@@ -36,7 +37,7 @@ const CategoryList = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/api/categories', {
+            const res = await fetch(`${API_URL}/categories`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +68,7 @@ const CategoryList = () => {
 
         if (window.confirm('Are you sure you want to delete this category?')) {
             try {
-                const res = await fetch(`/api/categories/${id}`, {
+                const res = await fetch(`${API_URL}/categories/${id}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`,
@@ -94,7 +95,7 @@ const CategoryList = () => {
 
     const updateHandler = async (id) => {
         try {
-            const res = await fetch(`/api/categories/${id}`, {
+            const res = await fetch(`${API_URL}/categories/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

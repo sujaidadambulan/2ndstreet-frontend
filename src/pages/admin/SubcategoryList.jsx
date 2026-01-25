@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 import { Trash2, Edit, ArrowLeft } from 'lucide-react';
 import './Admin.css';
 
@@ -30,8 +31,8 @@ const SubcategoryList = () => {
     const fetchData = async () => {
         try {
             const [catRes, subRes] = await Promise.all([
-                fetch('/api/categories'),
-                fetch('/api/subcategories')
+                fetch(`${API_URL}/categories`),
+                fetch(`${API_URL}/subcategories`)
             ]);
 
             const catData = await catRes.json();
@@ -49,7 +50,7 @@ const SubcategoryList = () => {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/api/subcategories', {
+            const res = await fetch(`${API_URL}/subcategories`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ const SubcategoryList = () => {
 
         if (window.confirm('Are you sure you want to delete this subcategory?')) {
             try {
-                const res = await fetch(`/api/subcategories/${id}`, {
+                const res = await fetch(`${API_URL}/subcategories/${id}`, {
                     method: 'DELETE',
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`,
@@ -103,7 +104,7 @@ const SubcategoryList = () => {
 
     const updateHandler = async (id) => {
         try {
-            const res = await fetch(`/api/subcategories/${id}`, {
+            const res = await fetch(`${API_URL}/subcategories/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

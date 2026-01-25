@@ -6,12 +6,6 @@ export default defineConfig({
     plugins: [react()],
     assetsInclude: ['**/*.PNG', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.jfif'],
     server: {
-        proxy: {
-            '/api': {
-                target: 'http://localhost:5000',
-                changeOrigin: true,
-                secure: false,
-            },
-        },
+        // Proxy removed as API calls now use absolute URLs from API_URL
     },
 })
