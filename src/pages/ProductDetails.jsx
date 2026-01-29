@@ -24,6 +24,19 @@ const ProductDetails = () => {
     // WhatsApp Number
     const WHATSAPP_NUMBER = "9048376099";
 
+    const [zoomPos, setZoomPos] = useState({ x: 0, y: 0 });
+    const [isZoomed, setIsZoomed] = useState(false);
+
+    const handleMouseMove = (e) => {
+        const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+        const x = ((e.pageX - left - window.scrollX) / width) * 100;
+        const y = ((e.pageY - top - window.scrollY) / height) * 100;
+        setZoomPos({ x, y });
+    };
+
+    const handleMouseEnter = () => setIsZoomed(true);
+    const handleMouseLeave = () => setIsZoomed(false);
+
     useEffect(() => {
         const fetchProductDetails = async () => {
             try {
@@ -133,8 +146,21 @@ Is this item available for order?`;
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.5 }}
+                            onMouseMove={handleMouseMove}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                            style={{ overflow: 'hidden', cursor: 'zoom-in' }}
                         >
-                            <img src={images[selectedImage]} alt={product.name} className="main-image" />
+                            <img
+                                src={images[selectedImage]}
+                                alt={product.name}
+                                className="main-image"
+                                style={{
+                                    transformOrigin: `${zoomPos.x}% ${zoomPos.y}%`,
+                                    transform: isZoomed ? 'scale(2)' : 'scale(1)',
+                                    transition: isZoomed ? 'none' : 'transform 0.3s ease'
+                                }}
+                            />
                         </motion.div>
                         {images.length > 1 && (
                             <div className="thumbnail-list">
